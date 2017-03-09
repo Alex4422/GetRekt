@@ -1,5 +1,7 @@
 <?php
 
+namespace Model;
+
 class Vote {
     private $id;
     private $dateDeCreation;

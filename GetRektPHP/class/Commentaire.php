@@ -1,16 +1,21 @@
 <?php
 
+namespace Model;
+
+use Lib as Lib;
+
 class Commentaire {
     private $id;
     private $message;
     private $dateDeCreation;
     private $user;
     private $video;
+    public $ajax;
 
 
     function __construct()
     {
-
+        $this->ajax = new Lib\Ajax("questions");
     }
 
     public function setId($value)
@@ -61,6 +66,15 @@ class Commentaire {
     public function getVideo()
     {
         return $this->video;
+    }
+    
+    public function deleteById() {
+        
+    }
+    
+    public function getByUserIdAndVideoId() {
+        
+        return $this->ajax->get(1);
     }
 
 

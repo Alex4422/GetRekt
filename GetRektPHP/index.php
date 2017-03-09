@@ -1,8 +1,9 @@
 <?php
-    include_once "class/Security.php";
-    include_once 'class/User.php';
+    require "vendor/autoload.php";
+    
+    use Lib as Lib;
 
-    $secu = new Security();
+    $secu = new Lib\Security();
     
     
     $globals = array(
@@ -58,12 +59,20 @@
             include_once $view_footer;
         }
 
-    } elseif (isset($_GET['request']) && !empty($_GET['request'])) {
-        var_dump($_GET['request']);exit;
-        if (!$secu->logged()) {
-            header($redirect_connection); 
+    } elseif (isset($_GET['request']) && !empty($_GET['request'])
+            && isset($_GET['type']) && !empty($_GET['type'])) {
+        
+        $apiFoler = 'controller/api/';        
+        $type = htmlspecialchars(htmlentities($_GET['type']));
+        
+        if(file_exists($apiFoler . $type . 'Controller.php')) {
+            
+            include_once $apiFoler . $type . 'Controller.php';
+        } else {
+            include_once 'errorController.php';            
         }
-        include_once 'controller/jsonController.php';
+        
+        
     } else {
         // Inclusion de l'entete de la page
         include_once $view_header;

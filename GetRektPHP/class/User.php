@@ -1,5 +1,8 @@
 <?php
 
+namespace Model;
+use Lib as Lib;
+
 class User {
     //put your code here
     private $id;
@@ -8,10 +11,11 @@ class User {
     private $administrateur;
     private $dateDeCreation;
     private $email;
+    private $ajax;
 
     function __construct()
     {
-
+        $this->ajax = new Lib\Ajax("user");
     }
     
     public function setId($value)
@@ -72,6 +76,14 @@ class User {
     public function getEmail()
     {
         return $this->email;
+    }
+    
+    public function getAll() {
+        
+    }
+    
+    public function getById() {
+        
     }
     
     
