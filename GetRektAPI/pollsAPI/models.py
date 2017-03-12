@@ -1,6 +1,12 @@
 from django.db import models
 import datetime
 from django.utils import timezone
+from pollsAPI.model.categorie import *
+from pollsAPI.model.commentaire import *
+from pollsAPI.model.user import *
+from pollsAPI.model.video import *
+from pollsAPI.model.vote import *
+
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
