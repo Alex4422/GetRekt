@@ -4,7 +4,7 @@ namespace Lib;
 
 class Ajax {
     
-    private $apiUrl = "http://172.16.14.91:8000/pollsAPI/pollsAPI/";
+    private $apiUrl = "http://172.16.14.91:8000/pollsAPI/";
     
     function __construct($apiUrl = "") {
         $this->apiUrl = isset($apiUrl) && !empty($apiUrl) ? $this->apiUrl . $apiUrl ."/": $this->apiUrl;
@@ -29,9 +29,12 @@ class Ajax {
         
     }
     
-    public function post($sParams) {
+    public function post($url, $sParams) {
         
-        $sUrl = $this->apiUrl . $sParams;
+//        var_dump($sParams);exit;
+        
+        $sUrl = $this->apiUrl.$url."/";
+//        var_dump($sUrl); exit;
         
         //open connection
         $ch = curl_init();
@@ -53,7 +56,7 @@ class Ajax {
     
     public static function arrayToQueryString($array) {
  
-        
+        $sParams = "";
         foreach($array as $key=>$value) {
             $sParams .= $key . '=' . $value . '&';
         }

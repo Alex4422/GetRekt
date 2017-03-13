@@ -12,7 +12,8 @@ function AjaxRequest(options) {
         jQuery.ajax({
             url: _this.sUrl,
             method: _this.method,
-            data: this.params,
+            data: _this.params,
+            dataType: "json",
         }).done(function () {
             $(this).addClass("done");
         });

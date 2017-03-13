@@ -2,11 +2,15 @@
 
 namespace Model;
 
-class Vote {
-    private $id;
+class Video {
+    private $id;    
+    private $titre;
+    private $lien;
+    private $image;
     private $dateDeCreation;
+    private $description;
     private $user;
-    private $video;
+    private $categorie;
 
 
     function __construct()
@@ -24,6 +28,26 @@ class Vote {
         return $this->id;
     }
 
+    public function setTitre($value)
+    {
+        $this->titre = $value;
+    }
+
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+    
+    public function setLien($value)
+    {
+        $this->lien = $value;
+    }
+
+    public function getLien()
+    {
+        return $this->lien;
+    }
+
     public function setDateDeCreation($value)
     {
         $this->dateDeCreation = $value;
@@ -34,6 +58,27 @@ class Vote {
         return $this->dateDeCreation;
     }
 
+    public function setImage($value)
+    {
+        $this->image = $value;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+    
+    
+    public function setDescription($value)
+    {
+        $this->description = $value;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    
     public function setUser($value)
     {
         $this->user = $value;
@@ -43,15 +88,19 @@ class Vote {
     {
         return $this->user;
     }
-
-    public function setVideo($value)
+    
+    public function setCategorie($value)
     {
-        $this->video = $value;
+        $this->categorie = $value;
     }
 
-    public function getVideo()
+    public function getCategorie()
     {
-        return $this->video;
+        return $this->categorie;
+    }
+    
+    public function validateFields($aArray) {
+        
     }
 
 

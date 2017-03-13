@@ -7,8 +7,10 @@
     
     
     $globals = array(
-        "base_path" => "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],
+        "base_path" => "http://".$_SERVER['HTTP_HOST']."/GetRektPHP/",
     );
+//    echo '<pre>';
+//    var_dump($_SERVER);exit;
     
     
     

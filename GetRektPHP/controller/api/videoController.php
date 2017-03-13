@@ -5,6 +5,7 @@ use Model as Model;
 
 $ajax = new Lib\Ajax();
 $security = new Lib\Security();
+$video = new \Model\Video();
 
 header('Content-Type: application/json');
 $data = [
@@ -24,12 +25,12 @@ switch ($_GET['request']) {
         break;
     case "get":
 
+    break;
 
-        break;
     case "post":
-
-
-        break;
+        var_dump($_POST);exit;
+        
+    break;
 
     default:
         break;

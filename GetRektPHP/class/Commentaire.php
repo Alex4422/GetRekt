@@ -15,7 +15,7 @@ class Commentaire {
 
     function __construct()
     {
-        $this->ajax = new Lib\Ajax("questions");
+        $this->ajax = new Lib\Ajax("choices");
     }
 
     public function setId($value)
@@ -75,6 +75,17 @@ class Commentaire {
     public function getByUserIdAndVideoId() {
         
         return $this->ajax->get(1);
+    }
+    
+    public function postCommentaire() {
+        
+//        $sParams = $this->ajax->arrayToQueryString();
+        
+        return $this->ajax->post("14/update_choice", array(
+            "question" => 3,
+            "choice_text" => "kikoo",
+            "votes" => 35,
+        ));
     }
 
 

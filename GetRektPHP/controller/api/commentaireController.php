@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: application/json');
+
 //echo "commentaire";exit;
 
 use Model as Model;
@@ -7,9 +9,10 @@ use Lib as Lib;
 
 $commentaire = new Model\Commentaire();
 
-$result = $commentaire->getByUserIdAndVideoId();
+//$result = $commentaire->getByUserIdAndVideoId();
+$result = $commentaire->postCommentaire();
 //var_dump($result);
-echo $result;exit;
+echo json_encode($result);exit;
 
 
 
@@ -17,7 +20,6 @@ echo $result;exit;
 
 $security = new Lib\Security();
 
-header('Content-Type: application/json');
 $data = [
     "valid" => false,
     "message" => "Une erreur s'est produite"

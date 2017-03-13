@@ -16,6 +16,12 @@ and open the template in the editor.
         <header>
            <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
+                <li>
+                    <a href="<?php echo $globals['base_path']; ?>">Accueil</a>
+                </li>
+                <li>
+                    <a href="<?php echo $globals['base_path']; ?>?page=video&action=add">Soumettre une vidéo</a>
+                </li>
                 
                     <?php
                         if($secu->logged())
