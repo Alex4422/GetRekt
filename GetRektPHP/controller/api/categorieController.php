@@ -1,12 +1,14 @@
 <?php
 
+header('Content-Type: application/json');
+
 use Lib as Lib;
 use Model as Model;
 
 $ajax = new Lib\Ajax();
 $security = new Lib\Security();
+$categorie = new \Model\Categorie();
 
-header('Content-Type: application/json');
 $data = [
     "valid" => false,
     "message" => "Une erreur s'est produite"
@@ -27,7 +29,12 @@ switch ($_GET['request']) {
 
         break;
     case "post":
-
+        $aValidation = $categorie->validateFields($_POST['data']);
+        if ($aValidation['valid']) {
+            $aReturn = $categorie->createCategorie($aValidation['data']);
+        }
+        
+        var_dump($aReturn);exit;
 
         break;
 

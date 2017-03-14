@@ -22,6 +22,9 @@ and open the template in the editor.
                 <li>
                     <a href="<?php echo $globals['base_path']; ?>?page=video&action=add">Soumettre une vidéo</a>
                 </li>
+                <li>
+                    <a href="<?php echo $globals['base_path']; ?>?page=user&action=add">Inscription</a>
+                </li>
                 
                     <?php
                         if($secu->logged())
@@ -37,6 +40,14 @@ and open the template in the editor.
             </ul>
         </div>
         </header>
+        
+        <aside class="connection-container">
+            <form class="user-form" id="connect-user-form" action="" method="POST">    
+                <input class="field" name="pseudo" type="text" placeholder="Pseudo">
+                <input class="field" name="motDePasse" type="password" placeholder="Mot de passe">
+                <input class="get-rekt-btn" name="submit" type="submit" value="Se connecter">
+            </form>            
+        </aside>
         
         <section class ="section">
         

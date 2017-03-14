@@ -20,5 +20,7 @@
         <script src="<?php echo $globals['base_path']; ?>js/Lib/Ajax.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/app.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/pages/video.js"></script>
+        <script src="<?php echo $globals['base_path']; ?>js/pages/user.js"></script>
+        <script src="<?php echo $globals['base_path']; ?>js/pages/categorie.js"></script>
     </body>
 </html>

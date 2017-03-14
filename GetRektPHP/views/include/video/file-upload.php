@@ -1,4 +1,5 @@
 <?php
+session_start();
 $aAllowedExtensions = array("jpeg", "jpg", "png");
 
 //message qui sera affiché à l'user quand il va valider le formulaire
@@ -18,9 +19,10 @@ if (isset($_FILES["videoFile"]) && !empty($_FILES["videoFile"])) {
 
     if (isset($extension) && !empty($extension) && in_array($extension, $aAllowedExtensions)) {
         $filename = $_GET['filename'] ."." . $extension;
-        if ($videoImage['size'] <= 250000) {
+        if ($videoImage['size'] <= 450000) {
             if (move_uploaded_file($videoImage['tmp_name'], __DIR__."/../../../media/image/uploads/".$filename)) {                
                 $sMessageResult = $videoImage['name'];
+                $_SESSION['video']['imageName'] = $filename;
             } else {
                 $sMessageResult = "Une erreur est survenue, veuillez réessayer";
             }

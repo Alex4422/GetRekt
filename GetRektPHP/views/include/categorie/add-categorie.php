@@ -1,7 +1,7 @@
 <div id="add-category" class="add-category">
     <h1>Ajouter une categorie</h1>
 
-    <form method="POST">
+    <form method="POST" id="add-category-form">
         <div class="element-wrapper">
             <label for="categoryTitle">Nom</label>
             <input type="text" name="nom" id="categoryTitle"/>

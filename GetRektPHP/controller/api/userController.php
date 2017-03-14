@@ -1,19 +1,16 @@
 <?php
 
+header('Content-Type: application/json');
+
 use Model as Model;
 use Lib as Lib;
 
 
-$ajax = new Lib\Ajax("questions");
-$ajax->get("1/");
-var_dump($ajax);exit;
-
-$user = new Model\User();
-var_dump($user);
 $security = new Lib\Security();
+$user = new Model\User();
+$ajax = new \Lib\Ajax("user");
 
 
-header('Content-Type: application/json');
 $data = [
     "valid" => false,
     "message" => "Une erreur s'est produite"
@@ -28,15 +25,51 @@ switch ($_GET['request']) {
         }
 
 
-        break;
+    break;
+    
     case "get":
 
 
-        break;
+    break;
+
     case "post":
+        $aValidation = $user->validateFields($_POST['data']);
+        if ($aValidation['valid']) {
+            
+            $aValidation['data']['administrateur'] = 0;
+            $aValidation['data']['dateDeCreation'] = date("Y-m-d H:i:s");
+            
+            $bUserExist = json_decode($user->existUser($ajax, $aValidation['data']))->valid;
+//            var_dump($bUserExist);exit;
+            
+            if (!$bUserExist) {
+                $result = $user->createUser($aValidation['data']);
+                
+                if (strpos($result, "required") === false) {
+                    $data['valid'] = true;
+                    $data['message'] = "Vous êtes bien inscrit !";
+                }
+            } else {                
+                $data['valid'] = false;
+                $data['message'] = "L'utilisateur est déjà inscrit !";
+            }
+            
+        }
 
+    break;
+    
+    
+    case "connect":
+        $aConnect = $user->connect($ajax, $_POST['data']);        
+        $data['valid'] = $aConnect['valid'];
+        $data['message'] = $aConnect['message'];
+        
+        if ($aConnect['valid']) {
+            $_SESSION['user'] = serialize($user);
+        }
+//        var_dump($aConnect);exit;
 
-        break;
+    break;
 
     default:
         break;

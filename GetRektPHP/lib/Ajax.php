@@ -10,8 +10,12 @@ class Ajax {
         $this->apiUrl = isset($apiUrl) && !empty($apiUrl) ? $this->apiUrl . $apiUrl ."/": $this->apiUrl;
     }
     
-    public function get($sParams) {
-        $sUrl = $this->apiUrl . $sParams . "/";
+    public function get($sParams = "") {
+        $sUrl = $this->apiUrl;
+        
+        if (!empty($sParams)) {
+            $sUrl .= $sParams . "/";
+        }
 //        var_dump($sUrl);exit;
         
         $ch = curl_init();
@@ -25,15 +29,20 @@ class Ajax {
         
         curl_close($ch);
         
-        return $result;
+        return json_decode($result);
         
     }
     
-    public function post($url, $sParams) {
+    public function post($url, $aParams) {
         
 //        var_dump($sParams);exit;
+            
+        $sUrl = $this->apiUrl;
+        if (!empty($url)) {
+            $sUrl .= $url."/";
+        }
         
-        $sUrl = $this->apiUrl.$url."/";
+        
 //        var_dump($sUrl); exit;
         
         //open connection
@@ -42,16 +51,19 @@ class Ajax {
         curl_setopt_array($ch, array(
             CURLOPT_URL => $sUrl,
             CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => $sParams,
+            CURLOPT_POSTFIELDS => $aParams,
+            CURLOPT_RETURNTRANSFER => 1,
         ));
 
         //execute post
         $result = curl_exec($ch);
+        curl_close($ch);
         
-        var_dump($result);exit;
+//        var_dump($result);exit;
 
         //close connection
-        curl_close($ch);
+        
+        return json_decode($result);
     }
     
     public static function arrayToQueryString($array) {

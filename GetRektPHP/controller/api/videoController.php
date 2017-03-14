@@ -28,6 +28,11 @@ switch ($_GET['request']) {
     break;
 
     case "post":
+        var_dump($_SESSION);
+        $_POST['data'][] = array(
+            "name" => "image",
+            "value" =>  $_SESSION['video']['imageName'],
+        );
         var_dump($_POST);exit;
         
     break;

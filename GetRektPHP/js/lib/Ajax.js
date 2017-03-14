@@ -1,5 +1,5 @@
 
-function AjaxRequest(options) {
+function AjaxRequest(options, callback) {
     console.log("ajaxREquest");
     var _this = this;
     this.type = options.type;
@@ -14,8 +14,11 @@ function AjaxRequest(options) {
             method: _this.method,
             data: _this.params,
             dataType: "json",
-        }).done(function () {
+        }).done(function (data) {
             $(this).addClass("done");
+            if (typeof callback === 'function' && callback()) {
+                callback(data);
+            }
         });
     }
 }
