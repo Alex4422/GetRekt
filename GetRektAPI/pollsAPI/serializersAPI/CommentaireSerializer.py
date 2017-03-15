@@ -8,4 +8,4 @@ class CommentaireSerializer(serializers.ModelSerializer):
     idVideo = serializers.ReadOnlyField(source='video.id')
     class Meta:
         model = Commentaire
-        fields = ('dateDeCreation','idUser','idVideo')
+        fields = ('id','message','dateDeCreation','idUser','idVideo')

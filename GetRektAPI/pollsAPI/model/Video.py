@@ -5,10 +5,10 @@ Created on Mar 11, 2017
 '''
 
 from django.db import models
-from .user import *
-from .categorie import *
+from .User import *
+from .Categorie import *
 
-class video(models.Model):
+class Video(models.Model):
     '''
     classdocs
     '''
@@ -17,11 +17,11 @@ class video(models.Model):
     lien = models.CharField(max_length=400, default='')
     image = models.CharField(max_length=200, default='')
     dateDeCreation = models.DateTimeField('date de creation de la video')
-    description = models.CharField(max_length=200)
+    description = models.TextField()
 
     #foreign key
-    user = models.ForeignKey(user)
-    categorie = models.ForeignKey(categorie)
+    user = models.ForeignKey(User)
+    categorie = models.ForeignKey(Categorie)
     
     
     

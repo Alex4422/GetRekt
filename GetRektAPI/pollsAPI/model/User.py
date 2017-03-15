@@ -6,7 +6,7 @@ Created on Mar 11, 2017
 
 from django.db import models
 
-class user(models.Model):
+class User(models.Model):
     '''
     classdocs
     '''

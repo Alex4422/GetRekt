@@ -1,11 +1,11 @@
 from django.db import models
 import datetime
 from django.utils import timezone
-from pollsAPI.model.categorie import *
-from pollsAPI.model.commentaire import *
-from pollsAPI.model.user import *
-from pollsAPI.model.video import *
-from pollsAPI.model.vote import *
+from pollsAPI.model.Categorie import *
+from pollsAPI.model.Commentaire import *
+from pollsAPI.model.User import *
+from pollsAPI.model.Video import *
+from pollsAPI.model.Vote import *
 
 
 class Question(models.Model):

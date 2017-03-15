@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from pollsAPI.models import Video
+from pollsAPI.serializersAPI.CommentaireSerializer import CommentaireSerializer
+from pollsAPI.serializersAPI.VoteSerializer import VoteSerializer
 from django.contrib.auth.models import User
 
 
@@ -10,4 +12,4 @@ class VideoSerializer(serializers.ModelSerializer):
     idCategorie = serializers.ReadOnlyField(source='categorie.id')
     class Meta:
         model = Video
-        fields = ('titre', 'lien', 'image', 'dateDeCreation','description','commentaires','votes','idUser')
+        fields = ('id','titre', 'lien', 'image', 'dateDeCreation','description','commentaires','votes','idUser','idCategorie')

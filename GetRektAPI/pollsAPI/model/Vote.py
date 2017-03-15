@@ -6,10 +6,10 @@ Created on Mar 11, 2017
 
 from django.db import models
 from datetime import datetime
-from .user import *
-from .video import *
+from .User import *
+from .Video import *
 
-class vote(models.Model):
+class Vote(models.Model):
     '''
     classdocs
     '''
@@ -17,8 +17,8 @@ class vote(models.Model):
     dateDeCreation = models.DateTimeField('date de creation du vote')
     
     #foreign key
-    user = models.ForeignKey(user)
-    video = models.ForeignKey(video)
+    user = models.ForeignKey(User)
+    video = models.ForeignKey(Video)
     
     def __str__(self):
         return str(self.dateDeCreation)

@@ -6,7 +6,7 @@ Created on Mar 11, 2017
 
 from django.db import models
 
-class categorie(models.Model):
+class Categorie(models.Model):
     
     nom = models.CharField(max_length=50)
     

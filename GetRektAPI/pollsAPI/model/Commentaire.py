@@ -6,10 +6,10 @@ Created on Mar 11, 2017
 
 from django.db import models
 import datetime
-from .user import *
-from .video import *
+from .User import *
+from .Video import *
 
-class commentaire(models.Model):
+class Commentaire(models.Model):
     '''
     classdocs
     '''
@@ -18,8 +18,8 @@ class commentaire(models.Model):
     dateDeCreation = models.DateTimeField('date de creation du commentaire')
 
     #foreign key
-    user=models.ForeignKey(user)
-    video=models.ForeignKey(video)
+    user=models.ForeignKey(User)
+    video=models.ForeignKey(Video)
     
     
     def __str__(self):

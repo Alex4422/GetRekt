@@ -8,4 +8,4 @@ class CategorieSerializer(serializers.ModelSerializer):
     videos = VideoSerializer(many=True, read_only=True)
     class Meta:
         model = Categorie
-        fields = ('nom','videos')
+        fields = ('id','nom','videos')

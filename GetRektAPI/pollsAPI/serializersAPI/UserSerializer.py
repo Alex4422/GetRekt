@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from pollsAPI.model.User import User
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('pseudo', 'email', 'motDePasse', 'administrateur','dateDeCreation')
+        fields = ('id','pseudo', 'email', 'motDePasse', 'administrateur','dateDeCreation')
