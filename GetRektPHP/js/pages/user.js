@@ -1,6 +1,6 @@
 (function ($) {
     
-    console.log('user js');
+//    console.log('user js');
     
     $("#add-user-form").submit(function(e) {
         e.preventDefault();

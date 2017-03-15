@@ -15,7 +15,7 @@ class Commentaire {
 
     function __construct()
     {
-        $this->ajax = new Lib\Ajax("choices");
+        $this->ajax = new Lib\Ajax("commentaire");
     }
 
     public function setId($value)
@@ -72,21 +72,52 @@ class Commentaire {
         
     }
     
-    public function getByUserIdAndVideoId() {
-        
-        return $this->ajax->get(1);
+    public function getAll() {
+        $aApiCommentaires = $this->ajax->get("");
+        $aCommentaires = array();
+        foreach ($aApiCommentaires as $key => $commentaire) {
+            $currentCommentaire = new Commentaire();
+            $aCommentaires[] = $currentVideo->populateWithApi($commentaire);
+        }
+        return $aCommentaires;        
     }
     
-    public function postCommentaire() {
-        
-//        $sParams = $this->ajax->arrayToQueryString();
-        
-        return $this->ajax->post("14/update_choice", array(
-            "question" => 3,
-            "choice_text" => "kikoo",
-            "votes" => 35,
-        ));
+    
+    public function createCommentaire($aArray) {        
+        return $this->ajax->post("", $aArray);
     }
+    
+    public function validateFields($aArray) {
+        $aReturn = array(
+            "valid" => true,
+            "data" => array()
+        );
+        foreach ($aArray as $key => $value) {
+            $indexKey = $value['name'];
+            
+            if (empty($value['value'])) {
+                $aReturn['valid'] = false;
+                $aReturn['message'] = "Veuillez remplir tous les champs";
+                return $aReturn;                
+            }
+            
+            $aReturn['data'][$indexKey] = $value['value'];
+            
+        }
+        return $aReturn;
+    }
+    
+    
+    public function populateWithApi($aArray) {
+//        var_dump($aArray);exit;
+        $this->id = $aArray->id;
+        $this->message = $aArray->message;
+        $this->video = $aArray->idVideo;
+        $this->user = $aArray->idUser;
+        $this->dateDeCreation = $aArray->dateDeCreation;
+        return $this;
+    }
+    
 
 
 }

@@ -5,6 +5,7 @@ use Model as Model;
 
 $ajax = new Lib\Ajax();
 $security = new Lib\Security();
+$vote = new \Model\Vote();
 
 header('Content-Type: application/json');
 $data = [
@@ -27,7 +28,14 @@ switch ($_GET['request']) {
 
         break;
     case "post":
-
+        $aRequestData = array(
+            "video" => $_POST['data']['video'],
+            "user" => $sessionUser->getId(),
+            "dateDeCreation" => date("Y-m-d H:i:s"),
+        );
+//        var_dump($aRequestData);exit;
+        $aApi = $vote->voteForVideo($aRequestData);
+        var_dump($aApi);exit;
 
         break;
 

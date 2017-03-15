@@ -32,8 +32,7 @@ class Categorie {
     public function getNom()
     {
         return $this->nom;
-    }
-    
+    }    
     
     public function validateFields($aArray) {
         $aReturn = array(
@@ -64,8 +63,22 @@ class Categorie {
 
         return $category;
     }
-
-    public function getAllCategorie() {
-        return $this->ajax->get();
+    
+    public function getAll() { 
+        $aApiCategories = $this->ajax->get();
+        $aCategories = array();
+        foreach ($aApiCategories as $key => $categorie) {
+            $currentCategorie = new Categorie();
+            $aCategories[] = $currentCategorie->populateWithApi($categorie);
+        }
+        return $aCategories;
+    }
+    
+    
+    public function populateWithApi($aArray) {
+//        var_dump($aArray);exit;
+        $this->id = $aArray->id;
+        $this->nom = $aArray->nom;
+        return $this;
     }
 }

@@ -14,40 +14,42 @@ and open the template in the editor.
     </head>
     <body>
         <header>
-           <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li>
-                    <a href="<?php echo $globals['base_path']; ?>">Accueil</a>
-                </li>
-                <li>
-                    <a href="<?php echo $globals['base_path']; ?>?page=video&action=add">Soumettre une vidéo</a>
-                </li>
-                <li>
-                    <a href="<?php echo $globals['base_path']; ?>?page=user&action=add">Inscription</a>
-                </li>
-                
+            <div id="menu">
+                <ul class="menu-container">
+                    <li>
+                        <a class="title" href="<?php echo $globals['base_path']; ?>"><span class="coloured">Get</span> Rekt</a>
+                    </li>
+
                     <?php
-                        if($secu->logged())
-                        {
-                            ?>
-                           
-                <li class="deco">
-                    <a href="<?php echo $globals['base_path']; ?>?page=deconnexion">Déconnexion<span class="sr-only">(current)</span></a>
-                </li>
-                        <?php
-                        }
+                    if ($secu->logged()) {
                         ?>
-            </ul>
-        </div>
+                        <li>
+                            <a href="<?php echo $globals['base_path']; ?>?page=video&action=add">Soumettre une vidéo</a>
+                        </li>
+                        <li class="deco">
+                            <a href="<?php echo $globals['base_path']; ?>?page=deconnexion">Déconnexion<span class="sr-only">(current)</span></a>
+                        </li>
+                        <?php
+                    } else {
+                        ?>
+                        <li>
+                            <a href="<?php echo $globals['base_path']; ?>?page=user&action=add">Inscription</a>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+            </div>
         </header>
         
-        <aside class="connection-container">
-            <form class="user-form" id="connect-user-form" action="" method="POST">    
-                <input class="field" name="pseudo" type="text" placeholder="Pseudo">
-                <input class="field" name="motDePasse" type="password" placeholder="Mot de passe">
-                <input class="get-rekt-btn" name="submit" type="submit" value="Se connecter">
-            </form>            
-        </aside>
-        
+        <?php if (!$secu->logged()) { ?>
+            <aside class="connection-container">
+                <form class="user-form" id="connect-user-form" action="" method="POST">    
+                    <input class="field" name="pseudo" type="text" placeholder="Pseudo">
+                    <input class="field" name="motDePasse" type="password" placeholder="Mot de passe">
+                    <input class="get-rekt-btn" name="submit" type="submit" value="Se connecter">
+                </form>            
+            </aside>
+        <?php } ?>
+
         <section class ="section">
-        

@@ -165,6 +165,8 @@ class User {
     }
     
     public function populateWithApi($aArray) {
+//        var_dump($aArray);exit;
+        $this->id = $aArray->id;
         $this->administrateur = $aArray->administrateur;
         $this->motDePasse = $aArray->motDePasse;
         $this->pseudo = $aArray->pseudo;

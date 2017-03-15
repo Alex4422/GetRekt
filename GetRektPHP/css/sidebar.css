@@ -1,1 +1,11 @@
-
+.list-categorie .categorie-selector {
+    width: 30px;
+    height: 30px;
+    background: black;
+    padding: 5px;
+}
+.list-categorie .categorie-selector.active .check-arrow {
+    width: 100%;
+    height: 100%;
+    background: white;
+}

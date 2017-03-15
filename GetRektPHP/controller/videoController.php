@@ -6,17 +6,40 @@ $videoFolder = __DIR__."/../views/include/video/";
 
 $aDataList = array();
 $categorie = new \Model\Categorie();
+$video =  new \Model\Video();
+
+
+$aDataList['categories'] = $categorie->getAll();
+//$aDataList['categories'] = json_decode(json_encode($categoriesList), True);
 
 if (isset($_GET['action']) && !empty($_GET['action'])) {
     switch ($_GET['action']) {
         case "add":
             $_SESSION['video']['filename'] = date("YmdHis");
-            $aDataList['categories'] = $categorie->getAllCategorie();
             include_once $videoFolder . "add-video.php";    
         break;
     
+        case "update":
+            if (isset($_GET['id']) && !empty($_GET['id'])) {
+                $aApi = $video->getVideoById($_GET['id']);
+                $video->populateWithApi($aApi);
+//                var_dump($video);exit;
+                $aImage = explode(".", $video->getImage(), 2);
+                $_SESSION['video']['filename'] = $aImage[0];
+                include_once $videoFolder . "update-video.php";    
+            } else {
+                include_once $videoFolder . "add-video.php";    
+            }
+        break;
+    
         case "show":
-            include_once $videoFolder . "show-video.php";    
+            if (isset($_GET['id']) && !empty($_GET['id'])) {
+                $aApi = $video->getVideoById($_GET['id']);
+                $video->populateWithApi($aApi);                
+                include_once $videoFolder . "show-video.php";
+            } else {
+                header("location:".$globals['base_path']."?page=404");
+            }
         break;
     
         case "filter":

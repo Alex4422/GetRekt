@@ -1,6 +1,7 @@
 <?php
 
 namespace Model;
+use Lib as Lib;
 
 class Video {
     private $id;    
@@ -11,11 +12,11 @@ class Video {
     private $description;
     private $user;
     private $categorie;
-
+    private $ajax;
 
     function __construct()
     {
-
+        $this->ajax = new Lib\Ajax("video");
     }
 
     public function setId($value)
@@ -99,8 +100,70 @@ class Video {
         return $this->categorie;
     }
     
-    public function validateFields($aArray) {
+    public function createVideo($aArray) {        
+        return $this->ajax->post("", $aArray);
+    }
+    
+    public function updateVideo($aArray) {        
+        return $this->ajax->post($aArray['id']."/update_video", $aArray);
+    }    
+    
+    public function deleteVideo($id) {
+        return $this->ajax->delete($id . "/delete_video");
+    }
+    
+    public function getVideoById($id) {        
+        return $this->ajax->get($id);
+    }
+    
+    public function getAll() { 
+        $aApiVideos = $this->ajax->get("");
+        $aVideos = array();
+        foreach ($aApiVideos as $key => $video) {
+            $currentVideo = new Video();
+            $aVideos[] = $currentVideo->populateWithApi($video);
+        }
+        return $aVideos;
+    }
         
+    public function validateFields($aArray) {
+        $aReturn = array(
+            "valid" => true,
+            "data" => array()
+        );
+        foreach ($aArray as $key => $value) {
+            $indexKey = $value['name'];
+            
+            if (empty($value['value'])) {
+                $aReturn['valid'] = false;
+                $aReturn['message'] = "Veuillez remplir tous les champs";
+                return $aReturn;                
+            }
+            
+            if ($indexKey == "categorie" && $value['value'] == 0) {                
+                $aReturn['valid'] = false;
+                $aReturn['message'] = "Veuillez choisir une catégorie valide";
+                return $aReturn; 
+            }
+            
+            $aReturn['data'][$indexKey] = $value['value'];
+            
+        }
+        return $aReturn;
+    }
+    
+    
+    public function populateWithApi($aArray) {
+//        var_dump($aArray);exit;
+        $this->id = $aArray->id;
+        $this->description = $aArray->description;
+        $this->titre = $aArray->titre;
+        $this->lien = $aArray->lien;
+        $this->image = $aArray->image;
+        $this->dateDeCreation = $aArray->dateDeCreation;
+        $this->user = $aArray->idUser;
+        $this->categorie = $aArray->idCategorie;
+        return $this;
     }
 
 

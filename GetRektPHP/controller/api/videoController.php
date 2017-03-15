@@ -14,9 +14,16 @@ $data = [
 ];
 
 switch ($_GET['request']) {
-    case "delete":
+    case "delete":        
         if ($security->isAdmin()) {
-            $data['valid'] = true;
+             
+            if (isset($_GET['id']) && !empty($_GET['id'])) {
+                $aApi = $video->deleteVideo($_GET['id']);
+                
+                $data['valid'] = true;
+                var_dump($aApi);exit;            
+            }
+            
         } else {
             $data['message'] = "Vous n'etes pas autorisé à effectuer cette action";
         }
@@ -28,14 +35,37 @@ switch ($_GET['request']) {
     break;
 
     case "post":
-        var_dump($_SESSION);
         $_POST['data'][] = array(
             "name" => "image",
             "value" =>  $_SESSION['video']['imageName'],
         );
-        var_dump($_POST);exit;
+        $aValidation = $video->validateFields($_POST['data']);
+        
+        if ($aValidation['valid']) {
+            $aValidation['data']['dateDeCreation'] = date("Y-m-d H:i:s");
+            $aValidation['data']['user'] = $sessionUser->getId();
+            $aApi = $video->createVideo($aValidation['data']);
+            var_dump($aApi);exit;
+        }
+        var_dump($aValidation);exit;
         
     break;
+    
+    case "update":
+        $_POST['data'][] = array(
+            "name" => "image",
+            "value" =>  $_SESSION['video']['imageName'],
+        );
+        $aValidation = $video->validateFields($_POST['data']);
+        
+        if ($aValidation['valid']) {
+            $aApi = $video->updateVideo($aValidation['data']);
+            var_dump($aApi);exit;
+        }
+        var_dump($aValidation);exit;
+        
+    break;
+    
 
     default:
         break;

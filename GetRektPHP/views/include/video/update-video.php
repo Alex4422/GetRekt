@@ -1,19 +1,24 @@
+<div id="update-video" class="update-video">
+    <h1>Modifier une video</h1>
 
-<div id="add-video" class="add-video">
-    <h1>Ajouter une video</h1>
-
-    <form method="POST" enctype="multipart/form-data" id="add-video-form">
+    <form method="POST" enctype="multipart/form-data" id="update-video-form">
+        <div class="element-wrapper">
+            <input type="hidden" name="id" id="videoId" value="<?php echo $video->getId(); ?>"/>
+        </div>        
+        <div class="element-wrapper">
+            <input type="hidden" name="dateDeCreation" id="videoCreationDate" value="<?php echo $video->getDateDeCreation(); ?>"/>
+        </div>
         <div class="element-wrapper">
             <label for="videoTitle">Titre</label>
-            <input type="text" name="titre" id="videoTitle"/>
+            <input type="text" name="titre" id="videoTitle" value="<?php echo $video->getTitre(); ?>"/>
         </div>
         <div class="element-wrapper">
             <label for="videoLink">Lien</label>
-            <input type="text" name="lien" id="videoLink"/>
+            <input type="text" name="lien" id="videoLink" value="<?php echo $video->getLien(); ?>"/>
         </div>
         <div class="element-wrapper">
             <label for="videoDescription">Description</label>
-            <textarea name="description" id="videoDescription"></textarea>
+            <textarea name="description" id="videoDescription"><?php echo $video->getDescription(); ?></textarea>
         </div>            
         <div class="element-wrapper">
             <label for="videoCategorie">Categorie</label>
@@ -21,7 +26,9 @@
                 <option value="0">Aucune</option>
                 <?php 
                     foreach ($aDataList['categories'] as $key => $categorie) {
-                        echo "<option value='".$categorie->getId()."'>".$categorie->getNom()."</option>";
+                        echo "<option value='".$categorie->getId()."'";
+                        if ($video->getCategorie() == $categorie->getId()) { echo " selected='selected'"; }
+                        echo ">".$categorie->getNom()."</option>";
                     }
                 ?>
             </select>

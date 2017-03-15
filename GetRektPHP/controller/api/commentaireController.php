@@ -2,20 +2,10 @@
 
 header('Content-Type: application/json');
 
-//echo "commentaire";exit;
-
 use Model as Model;
 use Lib as Lib;
 
 $commentaire = new Model\Commentaire();
-
-//$result = $commentaire->getByUserIdAndVideoId();
-$result = $commentaire->postCommentaire();
-//var_dump($result);
-echo json_encode($result);exit;
-
-
-
 
 
 $security = new Lib\Security();
@@ -40,6 +30,16 @@ switch ($_GET['request']) {
 
         break;
     case "post":
+        $aValidation = $commentaire->validateFields($_POST['data']);
+        if ($aValidation['valid']) {
+            
+        }
+        $aValidation['data']['dateDeCreation'] = date("Y-m-d H:i:s");
+        $aValidation['data']['user'] = $sessionUser->getId();
+//        var_dump($aValidation['data']);exit;
+        $aApi = $commentaire->createCommentaire($aValidation['data']);
+        
+        var_dump($aApi);exit;
 
 
         break;

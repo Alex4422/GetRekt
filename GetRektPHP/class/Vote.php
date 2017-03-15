@@ -2,16 +2,18 @@
 
 namespace Model;
 
+use Lib as Lib;
+
 class Vote {
     private $id;
     private $date;
     private $user;
     private $video;
-
+    private $ajax;
 
     function __construct()
     {
-
+        $this->ajax = new Lib\Ajax("vote");
     }
 
     public function setId($value)
@@ -78,8 +80,8 @@ class Vote {
     }
 
     //Rentrer une nouvelle vote.
-    public function insertNewVote(){
-      //curl request to insert new vote
+    public function voteForVideo($aArray){         
+        return $this->ajax->post("", $aArray);
     }
 
 
