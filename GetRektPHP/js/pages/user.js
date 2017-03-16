@@ -2,6 +2,10 @@
     
 //    console.log('user js');
     
+    function inscriptionDone(data) {        
+        appendPopup(data.message, data.valid);
+    }
+    
     $("#add-user-form").submit(function(e) {
         e.preventDefault();
         var data = $(this).serializeArray();
@@ -14,7 +18,7 @@
                 data:data
             },            
         };
-        var oAjax = new AjaxRequest(options);
+        var oAjax = new AjaxRequest(options, inscriptionDone);
         oAjax.query();
     });
 

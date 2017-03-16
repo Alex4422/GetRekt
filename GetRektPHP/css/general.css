@@ -7,8 +7,9 @@ div, header, body, a {
     box-sizing: border-box;
 }
 
-a:hover {
+a:hover, a:focus {
     text-decoration: none;
+    color: white;
 }
 
 .section {
@@ -17,6 +18,7 @@ a:hover {
     padding: 15px;
     background: white;
     vertical-align: top;
+    overflow: hidden;
 }
 
 .content-container {
@@ -142,6 +144,7 @@ form select {
 
 /*POPUP POPIN*/
 #get-rekt-popin {
+    /*display: none;*/
     position: fixed;
     top: 0;
     width: 100%;

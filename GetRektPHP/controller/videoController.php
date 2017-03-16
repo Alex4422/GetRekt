@@ -16,8 +16,12 @@ $aDataList['categories'] = $categorie->getAll();
 if (isset($_GET['action']) && !empty($_GET['action'])) {
     switch ($_GET['action']) {
         case "add":
-            $_SESSION['video']['filename'] = date("YmdHis");
-            include_once $videoFolder . "add-video.php";    
+            if ($secu->logged()) {                
+                $_SESSION['video']['filename'] = date("YmdHis");
+                include_once $videoFolder . "add-video.php";  
+            }  else {
+                header("Location:" . $globals['base_path']);
+            }
         break;
     
         case "update":
@@ -36,6 +40,9 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
         case "show":
             if (isset($_GET['id']) && !empty($_GET['id'])) {
                 $aApi = $video->getVideoById($_GET['id']);
+                if (isset($aApi->detail) && !empty($aApi->detail) && $aApi->detail=="Not found.") {
+                    header("location:".$globals['base_path']."?page=404");                    
+                }
                 $video->populateWithApi($aApi);
                 
                 $aVoteVideo = $video->getAllVoteByVideo($video->getId());

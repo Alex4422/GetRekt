@@ -15,10 +15,11 @@ $data = [
 
 switch ($_GET['request']) {
     case "delete":
+//        var_dump($_POST);exit;
         if ($security->isAdmin()) {
 
-            if (isset($_GET['id']) && !empty($_GET['id'])) {
-                $aApi = $video->deleteVideo($_GET['id']);
+            if (isset($_POST['id']) && !empty($_POST['id'])) {
+                $aApi = $video->deleteVideo($_POST['id']);
 
                 $data['valid'] = true;
                 $data['message'] = "La vidéo à bien été supprimée";
@@ -36,28 +37,33 @@ switch ($_GET['request']) {
         break;
 
     case "post":
-        $_POST['data'][] = array(
-            "name" => "image",
-            "value" => $_SESSION['video']['imageName'],
-        );
-        $_POST['data'][] = array(
-            "name" => "lien",
-            "value" => $_SESSION['video']['videoName'],
-        );
-        $aValidation = $video->validateFields($_POST['data']);
+        if ($security->logged()) {
+            $_POST['data'][] = array(
+                "name" => "image",
+                "value" => $_SESSION['video']['imageName'],
+            );
+            $_POST['data'][] = array(
+                "name" => "lien",
+                "value" => $_SESSION['video']['videoName'],
+            );
+            $aValidation = $video->validateFields($_POST['data']);
 
-        if ($aValidation['valid']) {
-            $aValidation['data']['dateDeCreation'] = date("Y-m-d H:i:s");
-            $aValidation['data']['user'] = $sessionUser->getId();
-            $aApi = $video->createVideo($aValidation['data']);
-            $data['valid'] = true;
-            $data['message'] = "La vidéo à bien été ajoutée";
+            if ($aValidation['valid']) {
+                $aValidation['data']['dateDeCreation'] = date("Y-m-d H:i:s");
+                $aValidation['data']['user'] = $sessionUser->getId();
+                $aApi = $video->createVideo($aValidation['data']);
+                $data['valid'] = true;
+                $data['message'] = "La vidéo à bien été ajoutée";
+            } else {
+                $data['valid'] = false;
+                $data['message'] = $aValidation['message'];
+            }
         } else {
             $data['valid'] = false;
-            $data['message'] = $aValidation['message'];
+            $data['message'] = "veuillez vous connecter";
         }
         
-        exit;
+//        exit;
 
         break;
 

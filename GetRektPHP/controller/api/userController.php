@@ -39,13 +39,15 @@ switch ($_GET['request']) {
             $aValidation['data']['administrateur'] = 0;
             $aValidation['data']['dateDeCreation'] = date("Y-m-d H:i:s");
             
-            $bUserExist = json_decode($user->existUser($ajax, $aValidation['data']))->valid;
+            $bUserExist = $user->existUser($ajax, $aValidation['data'])->valid;
 //            var_dump($bUserExist);exit;
+//            $bUserExist = false;
             
             if (!$bUserExist) {
                 $result = $user->createUser($aValidation['data']);
+//                var_dump($result);
                 
-                if (strpos($result, "required") === false) {
+                if (gettype($result) != "string" || strpos($result, "required") === false) {
                     $data['valid'] = true;
                     $data['message'] = "Vous êtes bien inscrit !";
                 }

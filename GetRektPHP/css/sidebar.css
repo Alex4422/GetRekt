@@ -33,6 +33,7 @@ position: relative;
     padding: 5px;
     display: inline-block;
     vertical-align: middle;
+    cursor: pointer;
 }
 .list-categorie .categorie-selector .check-arrow {
     display: none;

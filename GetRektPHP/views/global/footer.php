@@ -7,7 +7,6 @@
         </footer>
         
         
-
         
         <script src="<?php echo $globals['base_path']; ?>js/vendor/jquery/jquery-2.1.4.min.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/vendor/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
@@ -18,6 +17,7 @@
         <?php } ?>
         <script src="<?php echo $globals['base_path']; ?>js/Lib/Ajax.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/Lib/Loader.js"></script>
+        <script src="<?php echo $globals['base_path']; ?>js/Lib/Popup.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/app.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/pages/video.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/pages/user.js"></script>
