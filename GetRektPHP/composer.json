@@ -1,0 +1,12 @@
+{
+    "name": "GetRekt",
+    "license": "MIT",
+    "type": "project",
+    "description": "The get Rekt project",
+    "autoload": {
+        "psr-4": { 
+            "Lib\\": "lib/",
+            "Model\\" : "class/"
+        }
+    }
+}

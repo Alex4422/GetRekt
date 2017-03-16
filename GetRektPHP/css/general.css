@@ -1,0 +1,167 @@
+body {
+    background: #e6e6e6;
+    padding-top: 65px;
+    padding-bottom: 30px;
+}
+div, header, body, a {
+    box-sizing: border-box;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+    color: white;
+}
+
+.section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 15px;
+    background: white;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.content-container {
+    width: 67%;
+    vertical-align: top;
+}
+
+aside {
+    float: right;
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+
+iframe {
+    border: 0;
+    outline: 0;
+    max-width: 625px;
+}
+
+.get-rekt-btn {
+    border: 0;
+    border-radius: 5px;
+    background: #00dde7;
+    color: white;
+    font-weight: bold;
+    outline: 0;
+    display: inline-block;
+    font-size: 17px;
+}
+
+
+.block-title {
+    display: block;
+    text-align: left;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 2px 10px;
+    background: url("../media/image/common/back-title.png");
+    background-color:#2b2b2b;
+    background-repeat: no-repeat;
+    margin:0;    
+    margin-bottom: 5px;
+}
+
+
+/* LOADER */
+.loader-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100px;
+    z-index: 200;
+    background: rgba(0,0,0,0.9);
+    padding-top: 20px;
+    text-align: center;
+}
+.loader {
+    display: inline-block;
+}
+.pacman>div:first-of-type, .pacman>div:nth-child(2) {
+    width: 0;
+    height: 0;
+    border-right: 25px solid transparent;
+    border-top: 25px solid #ffd900;
+    border-left: 25px solid #ffd900;
+    border-bottom: 25px solid #ffd900;
+    border-radius: 25px;
+    position: relative;
+    left: -30px;
+}
+
+.pacman>div:nth-child(3), .pacman>div:nth-child(4), .pacman>div:nth-child(5), .pacman>div:nth-child(6) {
+    background-color: #ffd900;
+    border-radius: 100%;
+    margin: 2px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 25px;
+    left: 70px;
+}
+
+
+
+
+
+.add-video {
+    text-align: center;
+}
+
+form textarea {
+    width: 100%;
+    height: 200px;
+    resize: none;   
+}
+form label {
+    display: block;
+}
+form input {
+    width: 80%;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: 1px solid grey;
+}
+form .element-wrapper {
+    margin-top: 20px;
+}
+
+form select {
+    width: 50%;
+    height: 35px;
+}
+
+
+
+
+
+/*POPUP POPIN*/
+#get-rekt-popin {
+    /*display: none;*/
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 100vh;
+    background: rgba(0,0,0,0.8);
+    z-index: 999;
+    color: black;
+    text-align: center;
+}
+
+#get-rekt-popin .message {
+    position: absolute;
+    top: 30%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    background: white;
+    max-width: 500px;
+}

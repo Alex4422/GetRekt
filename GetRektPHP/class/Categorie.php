@@ -1,12 +1,17 @@
 <?php
 
+namespace Model;
+use Lib as Lib;
+
 class Categorie {
     private $id;
     private $nom;
+    private $ajax;
 
     function __construct()
     {
-
+        
+        $this->ajax = new Lib\Ajax("categorie");
     }
 
     public function setId($value)
@@ -27,6 +32,30 @@ class Categorie {
     public function getNom()
     {
         return $this->nom;
+    }    
+    
+    public function validateFields($aArray) {
+        $aReturn = array(
+            "valid" => true,
+            "data" => array()
+        );
+        foreach ($aArray as $key => $value) {
+            $indexKey = $value['name'];
+            
+            if (empty($value['value'])) {
+                $aReturn['valid'] = false;
+                $aReturn['message'] = "Veuillez remplir tous les champs";
+                return $aReturn;                
+            }
+            
+            $aReturn['data'][$indexKey] = $value['value'];
+            
+        }
+        return $aReturn;
+    }
+    
+    public function createCategorie($aArray) {
+        return $this->ajax->post("", $aArray);
     }
 
     public static function getCategorieById($id) {
@@ -34,5 +63,22 @@ class Categorie {
 
         return $category;
     }
-
+    
+    public function getAll() { 
+        $aApiCategories = $this->ajax->get();
+        $aCategories = array();
+        foreach ($aApiCategories as $key => $categorie) {
+            $currentCategorie = new Categorie();
+            $aCategories[] = $currentCategorie->populateWithApi($categorie);
+        }
+        return $aCategories;
+    }
+    
+    
+    public function populateWithApi($aArray) {
+//        var_dump($aArray);exit;
+        $this->id = $aArray->id;
+        $this->nom = $aArray->nom;
+        return $this;
+    }
 }

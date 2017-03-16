@@ -1,16 +1,19 @@
 <?php
 
+namespace Model;
+
+use Lib as Lib;
 
 class Vote {
     private $id;
     private $date;
     private $user;
     private $video;
-
+    private $ajax;
 
     function __construct()
     {
-
+        $this->ajax = new Lib\Ajax("vote");
     }
 
     public function setId($value)
@@ -75,15 +78,26 @@ class Vote {
 
         return $vote;
     }
+    
 
     //Rentrer une nouvelle vote.
-    public function insertNewVote(){
-      //curl request to insert new vote
+    public function voteForVideo($aArray){         
+        return $this->ajax->post("", $aArray);
     }
 
 
     public function deleteVoteById($vid) {
       //curl to delete vote
+    }
+    
+    
+    public function populateWithApi($aArray) {
+//        var_dump($aArray);exit;
+        $this->id = $aArray[0];
+        $this->date = $aArray[1];
+        $this->user = $aArray[2];
+        $this->video = $aArray[3];
+        return $this;
     }
 
 

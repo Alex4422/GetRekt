@@ -1,4 +1,7 @@
 <?php
+
+namespace Lib;
+
 class Security {
 
     function __construct() {

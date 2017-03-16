@@ -1,16 +1,24 @@
 <?php
 
+namespace Model;
+
+use Lib as Lib;
+use Model as Model;
+
 class Commentaire {
     private $id;
     private $message;
     private $dateDeCreation;
     private $user;
+    private $oUser;
     private $video;
+    public $ajax;
 
 
     function __construct()
     {
-
+        $this->ajax = new Lib\Ajax("commentaire");
+        $this->oUser = new \Model\User();
     }
 
     public function setId($value)
@@ -51,6 +59,16 @@ class Commentaire {
     public function getUser()
     {
         return $this->user;
+    }   
+    
+    public function setOuser($value)
+    {
+        $this->oUser = $value;
+    }
+
+    public function getOuser()
+    {
+        return $this->oUser;
     }
     
     public function setVideo($value)
@@ -62,6 +80,70 @@ class Commentaire {
     {
         return $this->video;
     }
+    
+    public function deleteById() {
+        
+    }
+    
+    public function getAll() {
+        $aApiCommentaires = $this->ajax->get("");
+        $aCommentaires = array();
+        foreach ($aApiCommentaires as $key => $commentaire) {
+            $currentCommentaire = new Commentaire();
+            $aCommentaires[] = $currentVideo->populateWithApi($commentaire);
+        }
+        return $aCommentaires;        
+    }
+    
+    
+    public function createCommentaire($aArray) {        
+        return $this->ajax->post("", $aArray);
+    }
+    
+    public function validateFields($aArray) {
+        $aReturn = array(
+            "valid" => true,
+            "data" => array()
+        );
+        foreach ($aArray as $key => $value) {
+            $indexKey = $value['name'];
+            
+            if (empty($value['value'])) {
+                $aReturn['valid'] = false;
+                $aReturn['message'] = "Veuillez remplir tous les champs";
+                return $aReturn;                
+            }
+            
+            $aReturn['data'][$indexKey] = $value['value'];
+            
+        }
+        return $aReturn;
+    }
+    
+    
+    public function populateWithApi($aArray) {
+//        var_dump($aArray);exit;
+        $this->id = $aArray->id;
+        $this->message = $aArray->message;
+        $this->video = $aArray->idVideo;
+        $this->user = $aArray->idUser;
+        $this->setOuser($this->oUser->getById($this->user));
+        $this->dateDeCreation = $aArray->dateDeCreation;
+        return $this;
+    }
+    
+    public function populateWithApiArray($aArray) {
+//        var_dump($aArray);exit;
+        $this->id = $aArray[0];
+        $this->message = $aArray[1];
+        $this->dateDeCreation = $aArray[2];
+        $this->user = $aArray[3];
+        $this->oUser = $this->oUser->getById($this->user);
+//        var_dump($this->oUser);exit;
+        $this->video = $aArray[4];
+        return $this;
+    }
+    
 
 
 }
