@@ -21,7 +21,8 @@ switch ($_GET['request']) {
                 $aApi = $video->deleteVideo($_GET['id']);
 
                 $data['valid'] = true;
-                var_dump($aApi);exit;
+                $data['message'] = "La vidéo à bien été supprimée";
+//                var_dump($aApi);exit;
             }
         } else {
             $data['valid'] = false;

@@ -118,6 +118,16 @@ class Commentaire {
         return $this;
     }
     
+    public function populateWithApiArray($aArray) {
+//        var_dump($aArray);exit;
+        $this->id = $aArray[0];
+        $this->message = $aArray[1];
+        $this->dateDeCreation = $aArray[2];
+        $this->user = $aArray[3];
+        $this->video = $aArray[4];
+        return $this;
+    }
+    
 
 
 }

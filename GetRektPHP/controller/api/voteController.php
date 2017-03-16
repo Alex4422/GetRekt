@@ -34,8 +34,16 @@ switch ($_GET['request']) {
             "dateDeCreation" => date("Y-m-d H:i:s"),
         );
 //        var_dump($aRequestData);exit;
-        $aApi = $vote->voteForVideo($aRequestData);
-        var_dump($aApi);exit;
+        $aApi = $vote->voteForVideo($aRequestData);  
+        
+        if ($aApi->valid) {      
+            $data['valid'] = true;
+            $data['message'] = "Le vote à bien été pris en compte";
+        } else {
+            $data['valid'] = false;
+            $data['message'] = "Le vote à bien été supprimé";            
+        }
+//        var_dump($aApi);exit;
 
         break;
 

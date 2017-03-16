@@ -56,3 +56,7 @@ and open the template in the editor.
                     </form>            
                 </aside>
             <?php } ?>
+
+                <aside class="container-for-pub">
+                    <h1 class="block-title">Pub</h1>          
+                </aside>

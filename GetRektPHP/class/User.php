@@ -82,8 +82,9 @@ class User {
         
     }
     
-    public function getById() {
-        
+    public function getById($id) {
+        $aUser =  $this->ajax->get($id);
+        return $this->populateWithApi($aUser);
     }
     
     public function existUser($ajax, $aArray) {

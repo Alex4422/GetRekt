@@ -6,6 +6,7 @@ use Model as Model;
 use Lib as Lib;
 
 $commentaire = new Model\Commentaire();
+$user = new Model\User();
 
 
 $security = new Lib\Security();
@@ -31,13 +32,25 @@ switch ($_GET['request']) {
         break;
     case "post":
         $aValidation = $commentaire->validateFields($_POST['data']);
-        if ($aValidation['valid']) {
-            
-        }
-        $aValidation['data']['dateDeCreation'] = date("Y-m-d H:i:s");
-        $aValidation['data']['user'] = $sessionUser->getId();
+//        $aValidation['data']['message'] = nl2br($aValidation['data']['message']);
+//        var_dump($aValidation['data']['message']);exit;
+        if ($aValidation['valid']) {            
+            $aValidation['data']['dateDeCreation'] = date("Y-m-d H:i:s");
+            $aValidation['data']['user'] = $sessionUser->getId();
 //        var_dump($aValidation['data']);exit;
-        $aApi = $commentaire->createCommentaire($aValidation['data']);
+            $aApi = $commentaire->createCommentaire($aValidation['data']);
+//            var_dump($aApi);
+            if ($aApi->id) {
+                $data['valid'] = true;
+                $data['message'] = "Le commentaire à bien été posté";
+                $user->getById($aApi->idUser);
+//                var_dump($user);exit;
+                $data['data'] = array(
+                    "message" => $aApi->message,
+                    "user" => $user->getPseudo()
+                );
+            }
+        }
         
         var_dump($aApi);exit;
 

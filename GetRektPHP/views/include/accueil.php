@@ -47,7 +47,7 @@
 
 <div id="accueil" class="list-all-video content-container">
 
-    <div id="videoList" class="list-videos">
+    <div id="videoList" class="list-videos left-container">
         <h1 class="block-title">Dernières vidéos</h1>
         <div class="video-container">
             <div class='loader-overlay'><div class='loader'><div class='pacman'><div></div><div></div><div></div><div></div><div></div></div></div></div>

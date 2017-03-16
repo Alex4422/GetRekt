@@ -1,5 +1,5 @@
-<div id="add-user" class="add-user">
-    <h1>Inscription</h1>
+<div id="add-user" class="add-user add-video content-container">
+    <h1 class="block-title">Inscription</h1>
 
     <form method="POST" id="add-user-form">
         <div class="element-wrapper">

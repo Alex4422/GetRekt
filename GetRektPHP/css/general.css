@@ -1,6 +1,7 @@
 body {
     background: #e6e6e6;
     padding-top: 65px;
+    padding-bottom: 30px;
 }
 div, header, body, a {
     box-sizing: border-box;
@@ -50,6 +51,7 @@ iframe {
 
 .block-title {
     display: block;
+    text-align: left;
     color: white;
     text-transform: uppercase;
     font-weight: bold;
@@ -100,4 +102,36 @@ iframe {
     position: absolute;
     top: 25px;
     left: 70px;
+}
+
+
+
+
+
+.add-video {
+    text-align: center;
+}
+
+form textarea {
+    width: 100%;
+    height: 200px;
+    resize: none;   
+}
+form label {
+    display: block;
+}
+form input {
+    width: 80%;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: 1px solid grey;
+}
+form .element-wrapper {
+    margin-top: 20px;
+}
+
+form select {
+    width: 50%;
+    height: 35px;
 }

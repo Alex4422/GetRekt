@@ -1,5 +1,5 @@
-<div id="update-video" class="update-video">
-    <h1>Modifier une video</h1>
+<div id="update-video" class="update-video content-container">
+    <h1 class="block-title">Modifier une video</h1>
 
     <form method="POST" enctype="multipart/form-data" id="update-video-form">
         <div class="element-wrapper">

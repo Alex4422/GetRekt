@@ -125,6 +125,34 @@ class Video {
         }
         return $aVideos;
     }
+    
+    
+    public function getAllVoteByVideo($vid) {    
+//        var_dump($vid);exit;
+        $aApiVotes = $this->ajax->post($vid."/getvotes", array("video" => $vid));
+//        var_dump($aApiVotes);exit;
+        $aVotes = array();
+        foreach ($aApiVotes as $key => $vote) {
+            $currentVote = new Vote();
+//            var_dump($vote);exit;
+            $aVotes[] = $currentVote->populateWithApi($vote);
+        }
+        return $aVotes;
+    }
+    
+    
+    public function getAllCommentairesByVideo($vid) {    
+//        var_dump($vid);exit;
+        $aApiVotes = $this->ajax->post($vid."/getcommentaires", array("video" => $vid));
+//        var_dump($aApiVotes);exit;
+        $aVotes = array();
+        foreach ($aApiVotes as $key => $vote) {
+            $currentVote = new Commentaire();
+//            var_dump($vote);exit;
+            $aVotes[] = $currentVote->populateWithApiArray($vote);
+        }
+        return $aVotes;
+    }
         
     public function validateFields($aArray) {
         $aReturn = array(
@@ -154,6 +182,20 @@ class Video {
     
     
     public function populateWithApi($aArray) {
+//        var_dump($aArray);exit;
+        $this->id = $aArray->id;
+        $this->description = $aArray->description;
+        $this->titre = $aArray->titre;
+        $this->lien = $aArray->lien;
+        $this->image = $aArray->image;
+        $this->dateDeCreation = $aArray->dateDeCreation;
+        $this->user = $aArray->idUser;
+        $this->categorie = $aArray->idCategorie;
+        return $this;
+    }
+    
+    
+    public function populateWithApiArray($aArray) {
 //        var_dump($aArray);exit;
         $this->id = $aArray->id;
         $this->description = $aArray->description;

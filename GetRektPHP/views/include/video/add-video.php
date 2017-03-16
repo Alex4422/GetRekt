@@ -1,6 +1,6 @@
 
-<div id="add-video" class="add-video">
-    <h1>Ajouter une video</h1>
+<div id="add-video" class="add-video content-container">
+    <h1 class="block-title">Ajouter une video</h1>
 
     <form method="POST" enctype="multipart/form-data" id="add-video-form">
         <div class="element-wrapper">
@@ -27,8 +27,14 @@
                 ?>
             </select>
         </div>
-        <iframe id="downloader" src="<?php echo $globals['base_path'] ?>views/include/video/video-upload.php?filename=<?php echo $_SESSION['video']['filename'] ?>" style="height: 60px; width: 100%"></iframe>
+<div class="element-wrapper">
+            <label>Video :</label>
+    <iframe id="downloader" src="<?php echo $globals['base_path'] ?>views/include/video/video-upload.php?filename=<?php echo $_SESSION['video']['filename'] ?>" style="height: 60px; width: 100%"></iframe>       
+</div>
+<div class="element-wrapper">
+    <label>Image</label>
         <iframe id="downloader" src="<?php echo $globals['base_path'] ?>views/include/video/file-upload.php?filename=<?php echo $_SESSION['video']['filename'] ?>" style="height: 60px; width: 100%"></iframe>
+</div>
         <div class="element-wrapper">
             <button type="submit" name="submit" id="add-video-btn" class="get-rekt-btn">Ajouter</button>
         </div>

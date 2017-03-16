@@ -7,6 +7,7 @@ $videoFolder = __DIR__."/../views/include/video/";
 $aDataList = array();
 $categorie = new \Model\Categorie();
 $video =  new \Model\Video();
+$vote = new \Model\Vote();
 
 
 $aDataList['categories'] = $categorie->getAll();
@@ -35,7 +36,15 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
         case "show":
             if (isset($_GET['id']) && !empty($_GET['id'])) {
                 $aApi = $video->getVideoById($_GET['id']);
-                $video->populateWithApi($aApi);                
+                $video->populateWithApi($aApi);
+                
+                $aVoteVideo = $video->getAllVoteByVideo($video->getId());
+                $aDataList['votes']['total'] =count($aVoteVideo);
+                
+                $aCommentaireVideo = $video->getAllCommentairesByVideo($video->getId());
+                $aDataList['commentaires']['list'] = $aCommentaireVideo;
+//                var_dump($aDataList['commentaires']['list']);
+                
                 include_once $videoFolder . "show-video.php";
             } else {
                 header("location:".$globals['base_path']."?page=404");

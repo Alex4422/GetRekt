@@ -1,6 +1,6 @@
 <?php
 session_start();
-$aAllowedExtensions = array("mp4", "webm", "ogg");
+$aAllowedExtensions = array("mp4", "webm");
 
 //message qui sera affiché à l'user quand il va valider le formulaire
 $sMessageResult = "Video : (" . implode(", ", $aAllowedExtensions) . ") max 100Mo";
@@ -20,8 +20,7 @@ if (isset($_FILES["videoFile"]) && !empty($_FILES["videoFile"])) {
 
 
     if ((($_FILES["videoFile"]["type"] == "video/mp4") ||
-            ($_FILES["videoFile"]["type"] == "video/webm") ||
-            ($_FILES["videoFile"]["type"] == "video/ogg")) &&
+            ($_FILES["videoFile"]["type"] == "video/webm")) &&
             in_array($extension, $aAllowedExtensions)) {
         $filename = $_GET['filename'] . "." . $extension;
         if ($videoImage['size'] <= 100000000) {

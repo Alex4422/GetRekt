@@ -5,6 +5,7 @@
     $("#add-video-form").submit(function(e) {
         e.preventDefault();
         var data = $(this).serializeArray();
+        data[1].value = data[1].value.replace(/\r?\n/g, '<br />');
 //        console.log(data);
         var options = {
             type:"video",

@@ -78,6 +78,7 @@ class Vote {
 
         return $vote;
     }
+    
 
     //Rentrer une nouvelle vote.
     public function voteForVideo($aArray){         
@@ -87,6 +88,16 @@ class Vote {
 
     public function deleteVoteById($vid) {
       //curl to delete vote
+    }
+    
+    
+    public function populateWithApi($aArray) {
+//        var_dump($aArray);exit;
+        $this->id = $aArray[0];
+        $this->date = $aArray[1];
+        $this->user = $aArray[2];
+        $this->video = $aArray[3];
+        return $this;
     }
 
 
