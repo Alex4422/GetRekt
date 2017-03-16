@@ -62,7 +62,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
     
 class VideoViewSet(viewsets.ModelViewSet):
-    queryset = Video.objects.all()
+    queryset = Video.objects.order_by('-dateDeCreation').all()
     serializer_class = VideoSerializer
     @detail_route(renderer_classes=[renderers.StaticHTMLRenderer])
     def perform_create(self, serializer):
@@ -90,7 +90,16 @@ class VideoViewSet(viewsets.ModelViewSet):
             return Response({'valid':False})
         video.delete()
         return Response({'valid':True})
-        
+    @detail_route(methods=['post'], url_name='getvotes-detail')
+    def getvotes(self,serializer,pk):
+        video = Video.objects.get(pk=self.request.POST.get('video'))
+        votes = Vote.objects.values_list().filter(video=video)
+        return Response(votes)
+    @detail_route(methods=['post'], url_name='getcommentaires-detail')
+    def getcommentaires(self,serializer,pk):
+        video = Video.objects.get(pk=self.request.POST.get('video'))
+        commentaires = Commentaire.objects.values_list().filter(video=video)
+        return Response(commentaires)
 
 
 class CommentaireViewSet(viewsets.ModelViewSet):

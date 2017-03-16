@@ -29,6 +29,7 @@ vote_for_video = views.VoteViewSet.as_view({
     'delete' : 'voteforvideo'
 })
 
+
 # The API URLs are now determined automatically by the router.
 # Additionally, we include the login URLs for the browsable API.
 urlpatterns = [
