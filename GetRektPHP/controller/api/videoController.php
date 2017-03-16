@@ -14,17 +14,17 @@ $data = [
 ];
 
 switch ($_GET['request']) {
-    case "delete":        
+    case "delete":
         if ($security->isAdmin()) {
-             
+
             if (isset($_GET['id']) && !empty($_GET['id'])) {
                 $aApi = $video->deleteVideo($_GET['id']);
-                
+
                 $data['valid'] = true;
-                var_dump($aApi);exit;            
+                var_dump($aApi);exit;
             }
-            
         } else {
+            $data['valid'] = false;
             $data['message'] = "Vous n'etes pas autorisé à effectuer cette action";
         }
 
@@ -32,40 +32,61 @@ switch ($_GET['request']) {
         break;
     case "get":
 
-    break;
+        break;
 
     case "post":
         $_POST['data'][] = array(
             "name" => "image",
-            "value" =>  $_SESSION['video']['imageName'],
+            "value" => $_SESSION['video']['imageName'],
+        );
+        $_POST['data'][] = array(
+            "name" => "lien",
+            "value" => $_SESSION['video']['videoName'],
         );
         $aValidation = $video->validateFields($_POST['data']);
-        
+
         if ($aValidation['valid']) {
             $aValidation['data']['dateDeCreation'] = date("Y-m-d H:i:s");
             $aValidation['data']['user'] = $sessionUser->getId();
             $aApi = $video->createVideo($aValidation['data']);
             var_dump($aApi);exit;
+            exit;
+        } else {
+            $data['valid'] = false;
+            $data['message'] = $aValidation['message'];
         }
-        var_dump($aValidation);exit;
         
-    break;
-    
+        exit;
+
+        break;
+
     case "update":
-        $_POST['data'][] = array(
-            "name" => "image",
-            "value" =>  $_SESSION['video']['imageName'],
-        );
-        $aValidation = $video->validateFields($_POST['data']);
-        
-        if ($aValidation['valid']) {
-            $aApi = $video->updateVideo($aValidation['data']);
-            var_dump($aApi);exit;
+        if ($security->isAdmin()) {
+            $_POST['data'][] = array(
+                "name" => "image",
+                "value" => $_SESSION['video']['imageName'],
+            );
+            $_POST['data'][] = array(
+                "name" => "lien",
+                "value" => $_SESSION['video']['videoName'],
+            );
+            $aValidation = $video->validateFields($_POST['data']);
+
+            if ($aValidation['valid']) {
+                $aApi = $video->updateVideo($aValidation['data']);
+                var_dump($aApi);
+                exit;
+            } else {
+                $data['valid'] = false;
+                $data['message'] = $aValidation['message'];
+            }
+        } else {
+            $data['valid'] = false;
+            $data['message'] = "Vous n'êtes pas autorisé a effectuer cette action";
         }
-        var_dump($aValidation);exit;
-        
-    break;
-    
+
+        break;
+
 
     default:
         break;

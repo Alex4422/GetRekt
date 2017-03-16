@@ -1,20 +1,7 @@
 (function ($) {
     
-//    console.log("app");
-    
-    $(".ajax-test").click(function() {
-        var options = {
-            type:"commentaire",
-            request:"get",
-            method:"get",
-            params:{},            
-        };
-        var oAjax = new AjaxRequest(options);
-        oAjax.query();
-    });
-    
     function connectSuccess(data) {
-        console.log(data);
+//        console.log(data);
         if (data.valid) {
             location.reload();            
         }
@@ -33,12 +20,12 @@
                 data:data
             },            
         };
-        var oAjax = new AjaxRequest(options, connectSuccess);
+        var oAjax = new AjaxRequest(options, connectSuccess, "#connect-user-form");
         oAjax.query();
     });
     
     if (typeof getRekt !== 'undefined') {
-        appendVideos(getRekt.videoList);        
+        appendVideos(getRekt.videoList);
     }
     
 
@@ -59,11 +46,13 @@
         return sElement;
     }
     
-    function appendVideos(aListVideos) {
+    function appendVideos(aListVideos) {        
+        appendLoader("#videoList .video-container");
         var sHtml = "";
         for (var i = 0; i < aListVideos.length; i++) {     
             sHtml += videoDecorator(aListVideos[i]);
         }
         $("#videoList .video-container").text("");
-        $("#videoList .video-container").append(sHtml);
+        $("#videoList .video-container").append(sHtml);        
+        removeLoader();
     }

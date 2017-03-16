@@ -18,20 +18,13 @@
 //    console.log("getRekt",getRekt);
 </script>
 
-<div id="accueil" class="list-all-note">
-
-    <div id="videoList" class="list-videos">
-        <h1>Liste des videos</h1>
-        <div class="video-container"></div>
-
-    </div>
-
+<aside class="categories-container">
     <div class="list-categorie">
         <div class="block-title">Categories</div>
         
         <div class="categorie-item">
-            <div class="categorie-selector" data-categorie-id="0">
-                <div class="check-arrow"></div>
+            <div class="categorie-selector active" data-categorie-id="0">
+                <img class="check-arrow" src="<?php echo $globals['base_path']; ?>media/image/common/check-arrow.png"/>
             </div>
             <div class="categorie-label">Tous</div>
         </div>
@@ -40,7 +33,7 @@
             ?>
         <div class="categorie-item">
             <div class="categorie-selector" data-categorie-id="<?php echo $categorie->getId(); ?>">
-                <div class="check-arrow"></div>
+                <img class="check-arrow" src="<?php echo $globals['base_path']; ?>media/image/common/check-arrow.png"/>
             </div>
             <div class="categorie-label"><?php echo $categorie->getNom(); ?></div>
         </div>
@@ -49,9 +42,17 @@
             <?php
         }
         ?>
+    </div>
+</aside>
+
+<div id="accueil" class="list-all-video content-container">
+
+    <div id="videoList" class="list-videos">
+        <h1 class="block-title">Dernières vidéos</h1>
+        <div class="video-container">
+            <div class='loader-overlay'><div class='loader'><div class='pacman'><div></div><div></div><div></div><div></div><div></div></div></div></div>
+        </div>
 
     </div>
-
-
 </div>
 

@@ -1,0 +1,46 @@
+.categories-container {
+    clear: right;
+}
+
+.video-container {
+    position: relative;
+    min-height: 300px;
+}
+
+
+
+.video-item {
+    margin-bottom: 10px;
+}
+
+.video-item .image {
+    width: 20%;
+    display: inline-block;
+    height: 100px;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.video-item .description {
+    display: inline-block;
+    width: 60%;
+    vertical-align: top;
+}
+.video-item .infos-video {
+    background-color: #e6e6e6;
+}
+
+.title-video {
+    background:#2b2b2b;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 17px;
+    padding: 2px 10px;
+    background: url("../media/image/common/back-subtitle.png");
+    background-color:#2b2b2b;
+    background-repeat: no-repeat;
+    color: white;
+}
+.title-video a {
+    display: block;
+    color: white;
+}

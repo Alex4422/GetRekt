@@ -1,11 +1,51 @@
+/* CONNEXION */
+.connection-container {
+    background-color: #e6e6e6;
+}
+.connection-container form {
+    text-align: center;
+position: relative;    
+}
+.form-item {
+    margin-bottom: 5px;
+}
+.form-item input {
+    width: 80%;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+
+/* CATEGORIES */
+.list-categorie {
+    background-color: #e6e6e6;
+}
+
+.list-categorie .categorie-item {
+    padding: 5px 10px;
+    border-bottom: 2px solid black;
+}
 .list-categorie .categorie-selector {
     width: 30px;
     height: 30px;
-    background: black;
+    background: #00dde7;
     padding: 5px;
+    display: inline-block;
+    vertical-align: middle;
 }
-.list-categorie .categorie-selector.active .check-arrow {
+.list-categorie .categorie-selector .check-arrow {
+    display: none;
     width: 100%;
     height: 100%;
-    background: white;
+    max-width: 20px;
+    
+}
+.list-categorie .categorie-selector.active .check-arrow {
+    display: inline-block;
+}
+
+.list-categorie .categorie-label {
+    display: inline-block;
+    vertical-align: middle;
 }

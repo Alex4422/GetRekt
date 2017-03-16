@@ -15,41 +15,44 @@ and open the template in the editor.
     <body>
         <header>
             <div id="menu">
-                <ul class="menu-container">
-                    <li>
-                        <a class="title" href="<?php echo $globals['base_path']; ?>"><span class="coloured">Get</span> Rekt</a>
-                    </li>
+                <div class="logo">
+                    <img src="<?php echo $globals['base_path']; ?>media/image/common/logo-white.png" />
+                </div>
+                <h1 class="link-home"><a href="<?php echo $globals['base_path']; ?>"><span class="coloured">Get</span> Rekt</a></h1>
+                <div class="links-right">
+                <?php
+                if ($secu->logged()) {
+                    ?>
+                    <a class="link-btn participe" href="<?php echo $globals['base_path']; ?>?page=video&action=add">Participe !</a>                        
+                    <a class="link-btn deconnexion" href="<?php echo $globals['base_path']; ?>?page=deconnexion">Déconnexion<span class="sr-only">(current)</span></a>
 
                     <?php
-                    if ($secu->logged()) {
-                        ?>
-                        <li>
-                            <a href="<?php echo $globals['base_path']; ?>?page=video&action=add">Soumettre une vidéo</a>
-                        </li>
-                        <li class="deco">
-                            <a href="<?php echo $globals['base_path']; ?>?page=deconnexion">Déconnexion<span class="sr-only">(current)</span></a>
-                        </li>
-                        <?php
-                    } else {
-                        ?>
-                        <li>
-                            <a href="<?php echo $globals['base_path']; ?>?page=user&action=add">Inscription</a>
-                        </li>
-                        <?php
-                    }
+                } else {
                     ?>
-                </ul>
+                    <a class="link-btn inscription" href="<?php echo $globals['base_path']; ?>?page=user&action=add">Inscription</a>
+                    <?php
+                }
+                ?>
+                </div>
             </div>
         </header>
-        
-        <?php if (!$secu->logged()) { ?>
-            <aside class="connection-container">
-                <form class="user-form" id="connect-user-form" action="" method="POST">    
-                    <input class="field" name="pseudo" type="text" placeholder="Pseudo">
-                    <input class="field" name="motDePasse" type="password" placeholder="Mot de passe">
-                    <input class="get-rekt-btn" name="submit" type="submit" value="Se connecter">
-                </form>            
-            </aside>
-        <?php } ?>
+
 
         <section class ="section">
+
+            <?php if (!$secu->logged()) { ?>
+                <aside class="connection-container">
+                    <h1 class="block-title">Connexion</h1>
+                    <form class="user-form" id="connect-user-form" action="" method="POST">
+                        <div class="form-item">
+                        <input class="field" name="pseudo" type="text" placeholder="Pseudo">                            
+                        </div>
+                        <div class="form-item">
+                        <input class="field" name="motDePasse" type="password" placeholder="Mot de passe">                          
+                        </div>
+                        <div class="form-item">
+                            <input class="get-rekt-btn" name="submit" type="submit" value="Se connecter">                      
+                        </div>
+                    </form>            
+                </aside>
+            <?php } ?>

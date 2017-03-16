@@ -74,7 +74,7 @@ if (isset($_FILES["videoFile"]) && !empty($_FILES["videoFile"])) {
             </span>
             <div class="file-btn">
                 Parcourir
-                <input type="file" name="videoFile" id="videoFile" placeholder="Charger mon ticket de caisse" />
+                <input type="file" name="videoFile" id="videoFile" placeholder="Mon image" />
             </div>
         </form>
     </body>

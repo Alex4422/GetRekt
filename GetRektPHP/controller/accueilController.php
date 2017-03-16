@@ -10,7 +10,7 @@ $categorie = new \Model\Categorie();
 $video =  new \Model\Video();
 
 $aDataList['categorie']['list'] = $categorie->getAll();
-//var_dump($aDataList['categorie']['list']);exit;
+
 $aDataList['video']['list'] = $video->getAll();
 
 

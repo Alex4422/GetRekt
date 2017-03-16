@@ -22,21 +22,9 @@ $view_header = 'views/global/header.php';
 $view_footer = 'views/global/footer.php';
 $log = 'login';
 $passw = 'password';
-// si il y a un cookie, on connect l'user.
-//if (isset($_COOKIE[$log]) && !empty($_COOKIE[$log]) &&
-//        isset($_COOKIE[$passw]) && !empty($_COOKIE[$passw])) {
-//    $user = new User();
-//    $user->setLogin(filter_input(INPUT_COOKIE, $log));
-//    $user->setPassword(filter_input(INPUT_COOKIE, $passw));
-//    $user->connect($bdd, true);
-//}
-
 
 if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
     $sessionUser = unserialize($_SESSION['user']);
-//    echo "<pre>";
-//    var_dump($sessionUser);
-//    echo "</pre>";
 }
 
 // si une page est demandée avec '?p=pageDemandee' (dans l'url)

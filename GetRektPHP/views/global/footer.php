@@ -10,6 +10,10 @@
             <div class="img-container"></div>
         </div>
         
+        <div id="get-rekt-popin">
+            <div class="message"></div>
+        </div>
+        
         <script src="<?php echo $globals['base_path']; ?>js/vendor/jquery/jquery-2.1.4.min.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/vendor/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/vendor/bpopup/jquery.bpopup.min.js"></script>
@@ -18,6 +22,7 @@
             <script src="<?php echo $globals['base_path']; ?>js/vendor/stat.js"></script>
         <?php } ?>
         <script src="<?php echo $globals['base_path']; ?>js/Lib/Ajax.js"></script>
+        <script src="<?php echo $globals['base_path']; ?>js/Lib/Loader.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/app.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/pages/video.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/pages/user.js"></script>

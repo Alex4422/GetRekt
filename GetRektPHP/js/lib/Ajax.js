@@ -1,5 +1,5 @@
 
-function AjaxRequest(options, callback) {
+function AjaxRequest(options, callback, sLoaderElement) {
 //    console.log("ajaxREquest");
     var _this = this;
     this.type = options.type;
@@ -7,6 +7,10 @@ function AjaxRequest(options, callback) {
     this.method = options.method;
     this.params = options.params;
     this.sUrl = "?request="+this.request+"&type="+this.type;
+    
+    if (typeof sLoaderElement === 'string') {
+        appendLoader(sLoaderElement);
+    }
 
     this.query = function() {   
         jQuery.ajax({
@@ -16,6 +20,10 @@ function AjaxRequest(options, callback) {
             dataType: "json",
         }).done(function (data) {
 //            console.log("ajaxData",data);
+
+            if (typeof sLoaderElement === 'string') {
+                removeLoader();
+            }
             if (typeof callback === 'function') {
                 callback(data);
             }
