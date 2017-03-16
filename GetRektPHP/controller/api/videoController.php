@@ -50,8 +50,8 @@ switch ($_GET['request']) {
             $aValidation['data']['dateDeCreation'] = date("Y-m-d H:i:s");
             $aValidation['data']['user'] = $sessionUser->getId();
             $aApi = $video->createVideo($aValidation['data']);
-            var_dump($aApi);exit;
-            exit;
+            $data['valid'] = true;
+            $data['message'] = "La vidéo à bien été ajoutée";
         } else {
             $data['valid'] = false;
             $data['message'] = $aValidation['message'];
@@ -75,8 +75,8 @@ switch ($_GET['request']) {
 
             if ($aValidation['valid']) {
                 $aApi = $video->updateVideo($aValidation['data']);
-                var_dump($aApi);
-                exit;
+                $data['valid'] = true;
+                $data['message'] = "La vidéo à bien été modifiée";
             } else {
                 $data['valid'] = false;
                 $data['message'] = $aValidation['message'];

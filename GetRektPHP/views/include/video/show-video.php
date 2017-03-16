@@ -36,7 +36,14 @@
             
             <?php 
                 foreach ($aDataList['commentaires']['list'] as $key => $commentaire) {
-                    echo $commentaire->getMessage()."<br/>";
+                    
+            ?>
+            <div class="com-contain">
+                <div class="pseudo"><?php echo $commentaire->getOuser()->getPseudo(); ?> :</div>
+                <div class="message"><?php echo $commentaire->getMessage(); ?></div>
+            </div>
+                
+            <?php
                 }
             
             ?>

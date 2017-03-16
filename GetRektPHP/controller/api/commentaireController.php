@@ -52,7 +52,6 @@ switch ($_GET['request']) {
             }
         }
         
-        var_dump($aApi);exit;
 
 
         break;

@@ -172,6 +172,7 @@ class User {
         $this->motDePasse = $aArray->motDePasse;
         $this->pseudo = $aArray->pseudo;
         $this->email = $aArray->email;
+        return $this;
     }
     
     

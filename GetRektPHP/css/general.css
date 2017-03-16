@@ -135,3 +135,30 @@ form select {
     width: 50%;
     height: 35px;
 }
+
+
+
+
+
+/*POPUP POPIN*/
+#get-rekt-popin {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 100vh;
+    background: rgba(0,0,0,0.8);
+    z-index: 999;
+    color: black;
+    text-align: center;
+}
+
+#get-rekt-popin .message {
+    position: absolute;
+    top: 30%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    background: white;
+    max-width: 500px;
+}

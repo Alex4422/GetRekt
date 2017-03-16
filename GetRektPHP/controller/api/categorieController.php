@@ -31,10 +31,10 @@ switch ($_GET['request']) {
     case "post":
         $aValidation = $categorie->validateFields($_POST['data']);
         if ($aValidation['valid']) {
-            $aReturn = $categorie->createCategorie($aValidation['data']);
+            $aReturn = $categorie->createCategorie($aValidation['data']);            
+                $data['valid'] = true;
+                $data['message'] = "La catégorie à bien été ajoutée";
         }
-        
-        var_dump($aReturn);exit;
 
         break;
 

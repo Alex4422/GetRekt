@@ -1,5 +1,5 @@
-<div id="add-category" class="add-category">
-    <h1>Ajouter une categorie</h1>
+<div id="add-category" class="add-category content-container">
+    <h1 class="block-title">Ajouter une categorie</h1>
 
     <form method="POST" id="add-category-form">
         <div class="element-wrapper">

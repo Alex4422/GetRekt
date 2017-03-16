@@ -6,13 +6,8 @@
             </div>-->
         </footer>
         
-        <div class="bpopup-container">
-            <div class="img-container"></div>
-        </div>
         
-        <div id="get-rekt-popin">
-            <div class="message"></div>
-        </div>
+
         
         <script src="<?php echo $globals['base_path']; ?>js/vendor/jquery/jquery-2.1.4.min.js"></script>
         <script src="<?php echo $globals['base_path']; ?>js/vendor/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>

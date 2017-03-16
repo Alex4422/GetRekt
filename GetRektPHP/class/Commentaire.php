@@ -3,12 +3,14 @@
 namespace Model;
 
 use Lib as Lib;
+use Model as Model;
 
 class Commentaire {
     private $id;
     private $message;
     private $dateDeCreation;
     private $user;
+    private $oUser;
     private $video;
     public $ajax;
 
@@ -16,6 +18,7 @@ class Commentaire {
     function __construct()
     {
         $this->ajax = new Lib\Ajax("commentaire");
+        $this->oUser = new \Model\User();
     }
 
     public function setId($value)
@@ -56,6 +59,16 @@ class Commentaire {
     public function getUser()
     {
         return $this->user;
+    }   
+    
+    public function setOuser($value)
+    {
+        $this->oUser = $value;
+    }
+
+    public function getOuser()
+    {
+        return $this->oUser;
     }
     
     public function setVideo($value)
@@ -114,6 +127,7 @@ class Commentaire {
         $this->message = $aArray->message;
         $this->video = $aArray->idVideo;
         $this->user = $aArray->idUser;
+        $this->setOuser($this->oUser->getById($this->user));
         $this->dateDeCreation = $aArray->dateDeCreation;
         return $this;
     }
@@ -124,6 +138,8 @@ class Commentaire {
         $this->message = $aArray[1];
         $this->dateDeCreation = $aArray[2];
         $this->user = $aArray[3];
+        $this->oUser = $this->oUser->getById($this->user);
+//        var_dump($this->oUser);exit;
         $this->video = $aArray[4];
         return $this;
     }
