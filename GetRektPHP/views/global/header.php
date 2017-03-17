@@ -36,6 +36,10 @@ and open the template in the editor.
                 </div>
             </div>
         </header>
+            
+            <script type="text/javascript">
+                var rekt_base_path = "<?php echo $globals['base_path']; ?>";
+            </script>
 
 
         <section class ="section">
@@ -60,3 +64,4 @@ and open the template in the editor.
                 <aside class="container-for-pub">
                     <h1 class="block-title">Pub</h1>          
                 </aside>
+            

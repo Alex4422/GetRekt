@@ -2,7 +2,7 @@
     
 //    console.log('video js');
     function submitVideoDone(data) {
-        appendPopup(data.message, false);
+        appendPopup(data.message, true);
     }
     
     $("#add-video-form").submit(function(e) {
@@ -73,7 +73,7 @@
     function deleteDone(data) {
         console.log(data);
         if (data.valid) {            
-                window.location.replace("http://getrekt.dev/GetRektPHP/");
+                window.location.replace(rekt_base_path);
         }
     }
     

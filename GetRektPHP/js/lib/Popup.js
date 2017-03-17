@@ -9,7 +9,7 @@ function appendPopup(message, bRedirectToHome) {
         
         $("#get-rekt-popin").fadeOut(500, function() {      
             if (bRedirectToHome) {
-                window.location.replace("http://getrekt.dev/GetRektPHP/");
+                window.location.replace(rekt_base_path);
             }      
             $("#get-rekt-popin").remove();
         });
