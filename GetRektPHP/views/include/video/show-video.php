@@ -1,6 +1,11 @@
 <div id="show-video" class="show-video content-container">
+    
+    <?php if ($secu->isAdmin()) { ?>
     <a href="<?php echo $globals['base_path']; ?>?page=video&action=update&id=<?php echo $_GET['id'] ?>" class="get-rekt-btn">Modifier</a>
     <button class="get-rekt-btn" data-delete data-type="video" data-video-id="<?php echo $_GET['id'] ?>">supprimer</button>
+    <?php } ?>
+    
+    
     <h1 class="block-title"><?php echo $video->getTitre(); ?></h1>
 
     <div class="video-container">
