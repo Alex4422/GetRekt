@@ -98,12 +98,12 @@ class VideoViewSet(viewsets.ModelViewSet):
     @detail_route(methods=['post'], url_name='getcommentaires-detail')
     def getcommentaires(self,serializer,pk):
         video = Video.objects.get(pk=self.request.POST.get('video'))
-        commentaires = Commentaire.objects.values_list().filter(video=video)
+        commentaires = Commentaire.objects.order_by('-dateDeCreation').values_list().filter(video=video)
         return Response(commentaires)
 
 
 class CommentaireViewSet(viewsets.ModelViewSet):
-    queryset = Commentaire.objects.all()
+    queryset = Commentaire.objects.order_by('-dateDeCreation').all()
     serializer_class = CommentaireSerializer
     @detail_route(renderer_classes=[renderers.StaticHTMLRenderer])
     def perform_create(self, serializer):
@@ -124,8 +124,7 @@ class CommentaireViewSet(viewsets.ModelViewSet):
     @detail_route(methods=['delete'],url_name='delete')
     def delete_commentaire(self,serializer,pk):
         commentaire = Commentaire.objects.get(pk=pk)
-        commentaire.delete()
-       
+        commentaire.delete()  
 
 
 class UserViewSet(viewsets.ModelViewSet):
